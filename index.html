@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>surpresaaaaaaaa 🧡</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: #fad59e;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-size: 34px;
+}
+
+.block {
+  background: white;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 25px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.block h2 {
+  color: #3fb332;
+}
+
+/* Carta */
+.carta {
+  background: #f7b845;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Galeria scrapbook */
+.gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.polaroid {
+  background: white;
+  padding: 10px 10px 20px 10px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+  transform: rotate(-2deg);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaroid img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #f38f4c;
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #e0d7da;
+}
+
+
+.section-title {
+  text-align: center;
+  color: #a34b00;
+  font-size: 22px;
+  border-bottom: 3px dashed #f7b845;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.gif-box, .imported-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gif-box img, .imported-gallery img {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+}
+
+/* Jogos */
+.btn-jogo {
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: #d87800;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-jogo:hover { background: #a85600; }
+
+.memory-game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #d87800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.card.revelado {
+  background: #ffe4b8;
+}
+
+/* Caça-Corações */
+.coracao {
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  animation: pular 1s ease-in-out;
+}
+
+@keyframes pular {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Confetes */
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  animation: fall 3s linear infinite;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.footer {
+  text-align: center;
+  color: #999;
+  margin: 40px 0 10px 0;
+  font-size: 13px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>👩🏼‍🤝‍👩🏻🧡</h1>
+
+<!-- Música -->
+<div style="text-align:center; margin-bottom:20px;">
+  <button id="btnMusica" type="button">🎵 Tocar música</button>
+</div>
+
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const musica = document.getElementById('musica');
+  const btnMusica = document.getElementById('btnMusica');
+  let tocando = false;
+
+  if (!musica || !btnMusica) {
+    console.error('Elemento #musica ou #btnMusica não encontrado no DOM.');
+    return;
+  }
+
+  btnMusica.addEventListener('click', async () => {
+    try {
+      if (!tocando) {
+        await musica.play();
+        btnMusica.innerText = '⏸️ Pausar música';
+        tocando = true;
+      } else {
+        musica.pause();
+        btnMusica.innerText = '🎵 Tocar música';
+        tocando = false;
+      }
+    } catch (err) {
+      console.error('Erro ao tentar reproduzir o áudio:', err);
+      alert('erro na musica');
+    }
+  });
+});
+</script>
+
+
+<!-- CARTA -->
+<div class="block carta" style="color:white">
+  <h2>💌 para voce meu amor</h2>
+  <p>
+    Eu criei esse site porque nossa história merece
+    ser guardada de um jeito especial. Claro que teremos atualizações,
+    quero encher esse site com nossos encontros 🧡
+  </p>
+</div>
+
+<!-- FOTOS SCRAPBOOK -->
+<div class="block">
+  <h2>📸 Nossas memórias...</h2>
+  <div class="gallery">
+    <div class="polaroid">
+      <img src="foto1.jpg">
+      <p>🤍</p>
+    </div>
+    <div class="polaroid">
+      <img src="foto2.jpg">
+      <p>💞</p>
+    </div>
+    <div class="polaroid">
+      <img src="foto3.jpg">
+      <p>✨</p>
+    </div>
+    <div class="polaroid">
+      <img src="foto4.jpg">
+      <p>🌷</p>
+    </div>
+    <div class="polaroid">
+      <img src="foto5.jpg">
+      <p>🧡</p>
+    </div>
+  </div>
+</div>
+
+<!-- FRASES -->
+<div class="block frases" style="background:#ffeaa7; color:#cc6d00; text-align:center;">
+  <h2> 🧡 Coisas que amo em você</h2>
+  <p id="frase"></p>
+  <button onclick="novaFrase()">nova frase</button>
+</div>
+
+<!-- SURPRESA -->
+<div class="block surpresa-area" style="background:#fff4d6; text-align:center;">
+  <h2>🎁 Um segredo pra você</h2>
+  <button onclick="surpresa()">clique aqui 💌</button>
+  <p id="surpresaTexto"></p>
+</div>
+
+<!-- GIF 1 -->
+<div class="block">
+  <h2 class="section-title">✨ gifzinho</h2>
+  <div class="gif-box"><img src="1.gif"></div>
+</div>
+
+<!-- CARTA LONGA -->
+<div class="block carta" style="background:#f7b845; color:white">
+  <h2 class="section-title">💌</h2>
+  <p>OIII MINHA PRINCESA!!</p>
+  <p>as vezes nem faz sentido, mas o que é escrito pelo o universo é sempre certo, sou tão grata por você estar aqui, você ter aparecido nesse momento, por cada decisão que eu tomei que me trouxe até esse exato momento que posso olhar nos seus olhos e ter você para mim, minhas palavras são tão pequenas pra mensurar o que eu sinto, meus gestos são formas de explicar, lateja no meu coração, arde na minha alma, é avassalador, é revigorante, é real, é sincero e é puro, esse é meu amor por você. a cada dia, cada hora, cada minuto, ele cresce, a cada frase sua, a cada áudio seu, a cada vez que saímos e eu posso olhar no seus olhos e te desejar com minha alma, a cada música que você me dedica e me faz chorar, a cada momento que você me ama em voz alta, a cada medida que tomamos para não deixar a outra desconfortável, isso é lindo demais de se ver, eu te amo em voz alta, eu te amo ardentemente, minha princesa preciosa, você é incrível, eu amo vc. seria idiotice não amar uma mulher tão maravilhosa, compreensiva, estudiosa, corajosa pra caralho, determinada, linda, cuidadosa, não tem palavras que dimensione a mulher incrível que eu tenho ao meu lado, nossa história está no começo e espero seguir com ela até meu último suspiro, eu quero ter uma vida com você, você é meu complemento, você é tudo que desejei, tudo que eu atrai, tudo que eu implorei pra ter na minha vida, você é imperdível, você é uma pintura viva, você é escultural, eu nunca vou perder você, eu não aceito e vou fazer de tudo pra que você esteja feliz ao meu lado.</p>
+  <p>eu te amo demais minha rainha 💕</p>
+</div>
+
+<!-- PLAYLIST -->
+<div class="block">
+  <h2 class="section-title">🎶 músicas</h2>
+  <div class="imported-gallery" style="margin-top:15px; margin-bottom:15px;">
+    <a href="https://open.spotify.com/playlist/09OC8xSAa2I6bBVIjtEbxQ?si=bfbec4add0a5457a" target="_blank" style="display:inline-block;">
+      <img src="codigo.jpeg" style="cursor:pointer;">
+    </a>
+  </div>
+</div>
+
+<!-- MAIS GIFS -->
+<div class="block">
+  <h2 class="section-title">✨ mais gifs</h2>
+  <div class="gif-box">
+    <img src="3.gif">
+    <img src="2.gif">
+  </div>
+</div>
+
+<div class="block">
+  <button class="btn-jogo" onclick="document.getElementById('jogo-memoria').style.display='block'; iniciarMemoria();">
+    🧠 joguinho da memória!
+  </button>
+
+  <div id="jogo-memoria" style="display:none;">
+    <h2 class="section-title">Jogo da Memória 💞</h2>
+    <div class="memory-game" id="tabuleiro"></div>
+  </div>
+</div>
+
+<div class="block">
+  <button class="btn-jogo" onclick="document.getElementById('caca-coracoes').style.display='block'; iniciarJogo();">
+    🎯 pega-corações!!
+  </button>
+
+  <div id="caca-coracoes" style="display:none;">
+    <h2 class="section-title">💘 Caça-Corações</h2>
+    <p style="text-align:center;">clique nos corações antes que eles sumam amor! ⏱️</p>
+
+    <div style="text-align:center;">
+      <strong>Pontos:</strong> <span id="pontos">0</span> |
+      <strong>Recorde:</strong> <span id="recorde">0</span> |
+      <strong>Tempo:</strong> <span id="tempo">30</span>s
+    </div>
+
+    <div id="campo-jogo"
+      style="position:relative; width:100%; height:400px; background:#ffe4b8; border-radius:10px; margin-top:20px; overflow:hidden;">
+    </div>
+  </div>
+</div>
+
+<div class="footer">feito com muito carinho, eu te amo bibia</div>
+
+</div> <!-- container -->
+
+<script>
+/* FRASES */
+const frases = [
+  "seu sorriso 🤍",
+  "sua boca 🍰",
+  "seus olhos 🌷",
+  "seu abraço 🏠",
+  "seu jeitinho ✨",
+  "sua personalidade 📙",
+  "sua coragem ⚔️",
+  "seus cabelos 😍",
+  "seu carinho 🤗 ",
+  "seu amor 💕 "
+];
+function novaFrase() {
+  const random = Math.floor(Math.random() * frases.length);
+  document.getElementById("frase").innerHTML = frases[random];
+}
+novaFrase();
+
+/* SURPRESA */
+function surpresa() {
+  document.getElementById("surpresaTexto").innerHTML = "eu te amo demais 💋💞";
+}
+
+/* CONFETES */
+function chuvaDeConfetes() {
+  for (let i = 0; i < 100; i++) {
+    let c = document.createElement("div");
+    c.classList.add("confetti");
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.backgroundColor = ['#f7b845', '#ffcf70', '#ffffff', '#ffb347'][Math.floor(Math.random() * 4)];
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+
+/* JOGO DA MEMÓRIA */
+let emojis = ['❤️','💙','💚','💛','💜','🧡','🤎'];
+let cards = [...emojis, ...emojis];
+let selecionados = [];
+
+function iniciarMemoria() {
+  const tabuleiro = document.getElementById("tabuleiro");
+  tabuleiro.innerHTML = '';
+  cards = cards.sort(() => 0.5 - Math.random());
+  cards.forEach(emoji => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.valor = emoji;
+    card.innerHTML = '?';
+    card.onclick = () => revelar(card);
+    tabuleiro.appendChild(card);
+  });
+}
+
+function revelar(card) {
+  if (card.classList.contains('revelado') || selecionados.length === 2) return;
+  card.innerHTML = card.dataset.valor;
+  card.classList.add('revelado');
+  selecionados.push(card);
+
+  if (selecionados.length === 2) {
+    setTimeout(() => {
+      if (selecionados[0].dataset.valor === selecionados[1].dataset.valor) {
+        selecionados[0].style.visibility = 'hidden';
+        selecionados[1].style.visibility = 'hidden';
+      } else {
+        selecionados[0].innerHTML = '?';
+        selecionados[1].innerHTML = '?';
+        selecionados[0].classList.remove('revelado');
+        selecionados[1].classList.remove('revelado');
+      }
+      selecionados = [];
+
+      if (document.querySelectorAll('.card:not([style*="hidden"])').length === 0) {
+        chuvaDeConfetes();
+        alert("parabéns amor! você terminou o jogo! 🥰");
+      }
+    }, 700);
+  }
+}
+
+/* CAÇA-CORAÇÕES */
+let pontos = 0;
+let recorde = localStorage.getItem("recordeCaca") || 0;
+document.getElementById("recorde").innerText = recorde;
+
+function iniciarJogo() {
+  pontos = 0;
+  let tempo = 30;
+  document.getElementById("pontos").innerText = pontos;
+  document.getElementById("tempo").innerText = tempo;
+  const campo = document.getElementById("campo-jogo");
+  campo.innerHTML = "";
+
+  const intervalo = setInterval(() => {
+    const cora = document.createElement("div");
+    cora.classList.add("coracao");
+    cora.innerText = "❤️";
+
+    cora.style.left = Math.random() * (campo.clientWidth - 30) + "px";
+    cora.style.top = Math.random() * (campo.clientHeight - 30) + "px";
+
+    campo.appendChild(cora);
+
+    cora.onclick = () => {
+      pontos++;
+      document.getElementById("pontos").innerText = pontos;
+      cora.remove();
+    };
+
+    setTimeout(() => { if (cora.parentElement) cora.remove(); }, 1200);
+  }, 400);
+
+  const cron = setInterval(() => {
+    tempo--;
+    document.getElementById("tempo").innerText = tempo;
+
+    if (tempo <= 0) {
+      clearInterval(intervalo);
+      clearInterval(cron);
+
+      if (pontos > recorde) {
+        recorde = pontos;
+        localStorage.setItem("recordeCaca", recorde);
+        document.getElementById("recorde").innerText = recorde;
+      }
+
+      chuvaDeConfetes();
+      alert("⏰ Tempo esgotado! Você pegou " + pontos + " corações! PARABENSSSS 💖");
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
