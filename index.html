@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- FOTOS SCRAPBOOK -->
 <div class="block">
-  <h2>📸 Nossas memórias...</h2>
+  <h2>📸 nossas memórias...</h2>
   <div class="gallery">
     <div class="polaroid">
       <img src="foto1.jpg">
@@ -277,27 +277,27 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<!-- FRASES -->
+<!-- frases -->
 <div class="block frases" style="background:#ffeaa7; color:#cc6d00; text-align:center;">
   <h2> 🧡 Coisas que amo em você</h2>
   <p id="frase"></p>
   <button onclick="novaFrase()">nova frase</button>
 </div>
 
-<!-- SURPRESA -->
+<!-- surpresa -->
 <div class="block surpresa-area" style="background:#fff4d6; text-align:center;">
   <h2>🎁 Um segredo pra você</h2>
   <button onclick="surpresa()">clique aqui 💌</button>
   <p id="surpresaTexto"></p>
 </div>
 
-<!-- GIF 1 -->
+<!-- gif -->
 <div class="block">
   <h2 class="section-title">✨ gifzinho</h2>
   <div class="gif-box"><img src="1.gif"></div>
 </div>
 
-<!-- CARTA LONGA -->
+<!-- carta -->
 <div class="block carta" style="background:#f7b845; color:white">
   <h2 class="section-title">💌</h2>
   <p>OIII MINHA PRINCESA!!</p>
@@ -324,13 +324,55 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
+<!-- CANTINHO DOS DESENHOS -->
+<div class="block" style="background:#fff4d6; text-align:center;">
+  <h2 class="section-title">🎨 cantinho dos nossos desenhos</h2>
+
+  <p id="avisoDesenho" style="display:none; color:#ff6fa5; font-weight:bold;">
+    🔔 deixei um desenho pra vc momo 💕
+  </p>
+
+  <!-- Nome -->
+  <input id="nomeAutora" placeholder="quem esta desenhando hein? 💖"
+    style="padding:8px; border-radius:20px; border:1px solid #f7b845; text-align:center;">
+
+  <!-- Controles -->
+  <div style="margin:15px 0;">
+    🎨 Cor:
+    <input type="color" id="corPincel" value="#ff6fa5">
+
+    ✏️ Pincel:
+    <select id="tipoPincel">
+      <option value="normal">normal</option>
+      <option value="coracao">coração 💗</option>
+    </select>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="canvasDesenho" width="300" height="300"
+    style="border:3px dashed #f7b845; border-radius:15px; background:white; touch-action:none;">
+  </canvas>
+
+  <div style="margin-top:15px;">
+    <button onclick="limparCanvas()">🧹 limpar</button>
+    <button onclick="salvarDesenho()">💾 salvar desenho</button>
+  </div>
+
+  <p id="dataDesenho" style="margin-top:10px; color:#a85600;"></p>
+
+  <hr style="margin:25px 0;">
+
+  <h3 style="color:#a85600;">📚 histórico de desenhos</h3>
+  <div id="historico" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;"></div>
+</div>
+
 <div class="block">
   <button class="btn-jogo" onclick="document.getElementById('jogo-memoria').style.display='block'; iniciarMemoria();">
     🧠 joguinho da memória!
   </button>
 
   <div id="jogo-memoria" style="display:none;">
-    <h2 class="section-title">Jogo da Memória 💞</h2>
+    <h2 class="section-title">jogo da Memória 💞</h2>
     <div class="memory-game" id="tabuleiro"></div>
   </div>
 </div>
@@ -341,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </button>
 
   <div id="caca-coracoes" style="display:none;">
-    <h2 class="section-title">💘 Caça-Corações</h2>
+    <h2 class="section-title">💘 caça-Corações</h2>
     <p style="text-align:center;">clique nos corações antes que eles sumam amor! ⏱️</p>
 
     <div style="text-align:center;">
@@ -494,6 +536,118 @@ function iniciarJogo() {
     }
   }, 1000);
 }
+</script>
+
+<script>
+const canvas = document.getElementById("canvasDesenho");
+const ctx = canvas.getContext("2d");
+
+let desenhando = false;
+let ultimoX = 0;
+let ultimoY = 0;
+
+canvas.addEventListener("mousedown", iniciar);
+canvas.addEventListener("mouseup", parar);
+canvas.addEventListener("mouseleave", parar);
+canvas.addEventListener("mousemove", desenhar);
+
+canvas.addEventListener("touchstart", iniciar);
+canvas.addEventListener("touchend", parar);
+canvas.addEventListener("touchmove", desenhar);
+
+function iniciar(e) {
+  desenhando = true;
+  const pos = pegarPosicao(e);
+  ultimoX = pos.x;
+  ultimoY = pos.y;
+}
+
+function parar() {
+  desenhando = false;
+  ctx.beginPath();
+}
+
+function desenhar(e) {
+  if (!desenhando) return;
+  e.preventDefault();
+
+  const pos = pegarPosicao(e);
+  const cor = document.getElementById("corPincel").value;
+  const tipo = document.getElementById("tipoPincel").value;
+
+  ctx.strokeStyle = cor;
+  ctx.lineWidth = 4;
+  ctx.lineCap = "round";
+
+  if (tipo === "normal") {
+    ctx.beginPath();
+    ctx.moveTo(ultimoX, ultimoY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  } else {
+    desenharCoracao(pos.x, pos.y, cor);
+  }
+
+  ultimoX = pos.x;
+  ultimoY = pos.y;
+}
+
+function desenharCoracao(x, y, cor) {
+  ctx.fillStyle = cor;
+  ctx.font = "20px Arial";
+  ctx.fillText("💗", x - 8, y + 8);
+}
+
+function pegarPosicao(e) {
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches ? e.touches[0] : e;
+  return {
+    x: touch.clientX - rect.left,
+    y: touch.clientY - rect.top
+  };
+}
+
+function limparCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function salvarDesenho() {
+  const nome = document.getElementById("nomeAutora").value || "Alguém apaixonada 💕";
+  const imagem = canvas.toDataURL();
+  const data = new Date().toLocaleString("pt-BR");
+
+  const desenhos = JSON.parse(localStorage.getItem("historicoDesenhos")) || [];
+  desenhos.unshift({ imagem, nome, data });
+
+  localStorage.setItem("historicoDesenhos", JSON.stringify(desenhos));
+
+  mostrarHistorico();
+  document.getElementById("avisoDesenho").style.display = "block";
+  document.getElementById("dataDesenho").innerText =
+    "🕒 Último desenho por " + nome + " — " + data;
+
+  alert("Desenho salvo com amor 💖");
+}
+
+function mostrarHistorico() {
+  const historico = document.getElementById("historico");
+  historico.innerHTML = "";
+
+  const desenhos = JSON.parse(localStorage.getItem("historicoDesenhos")) || [];
+
+  desenhos.forEach(d => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <img src="${d.imagem}" width="80" style="border-radius:10px; border:2px solid #f7b845;">
+      <p style="font-size:12px; color:#a85600;">
+        ${d.nome}<br>${d.data}
+      </p>
+    `;
+    historico.appendChild(div);
+  });
+}
+
+window.addEventListener("load", mostrarHistorico);
 </script>
 
 </body>
