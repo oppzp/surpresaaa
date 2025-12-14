@@ -648,25 +648,33 @@ async function salvarDesenho() {
 
 function mostrarHistorico() {
   db.collection("desenhos")
-    .orderBy("criadoEm", "desc")
     .onSnapshot(snapshot => {
       const historico = document.getElementById("historico");
       historico.innerHTML = "";
 
       snapshot.forEach(doc => {
         const d = doc.data();
+
+        if (!d.imagem) return;
+
         const div = document.createElement("div");
+        div.style.textAlign = "center";
+
         div.innerHTML = `
-          <img src="${d.imagem}" width="80" style="border-radius:10px; border:2px solid #f7b845;">
+          <img src="${d.imagem}" width="80"
+               style="border-radius:10px; border:2px solid #f7b845;">
           <p style="font-size:12px; color:#a85600;">
-            ${d.nome}<br>${d.data}
+            ${d.nome || "💖"}<br>
+            ${d.data || ""}
           </p>
         `;
+
         historico.appendChild(div);
       });
     });
 }
 
+window.addEventListener("load", mostrarHistorico);
 
 window.addEventListener("load", mostrarHistorico);
 
