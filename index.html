@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="block" style="background:#fff4d6; text-align:center;">
   <h2 class="section-title">🎨 cantinho dos nossos desenhos</h2>
 
-  <p id="avisoDesenho" style="display:none; color:#ff6fa5; font-weight:bold;">
+  <p id="avisoDesenho" style="display:none; color:#ffffff; font-weight:bold;">
     🔔 deixei um desenho pra vc momo 💕
   </p>
 
@@ -538,6 +538,24 @@ function iniciarJogo() {
 }
 </script>
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBidJ7MaRW3oVY1rExLE3AIRIPSGc2_8",
+    authDomain: "surpresaaa15112025.firebaseapp.com",
+    projectId: "surpresaaa15112025",
+    messagingSenderId: "287203844540",
+    appId: "1:287203844540:web:8b89d486cfbabcc96cbb9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  const db = firebase.firestore();
+</script>
+
 <script>
 const canvas = document.getElementById("canvasDesenho");
 const ctx = canvas.getContext("2d");
@@ -611,44 +629,47 @@ function limparCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function salvarDesenho() {
-  const nome = document.getElementById("nomeAutora").value || "Alguém apaixonada 💕";
-  const imagem = canvas.toDataURL();
+async function salvarDesenho() {
+  const nome = document.getElementById("nomeAutora").value || "alguém apaixonada 💕";
   const data = new Date().toLocaleString("pt-BR");
 
-  const desenhos = JSON.parse(localStorage.getItem("historicoDesenhos")) || [];
-  desenhos.unshift({ imagem, nome, data });
+  const imagemBase64 = canvas.toDataURL("image/png");
 
-  localStorage.setItem("historicoDesenhos", JSON.stringify(desenhos));
+  await db.collection("desenhos").add({
+    nome,
+    data,
+    imagem: imagemBase64,
+    criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+  });
 
-  mostrarHistorico();
   document.getElementById("avisoDesenho").style.display = "block";
-  document.getElementById("dataDesenho").innerText =
-    "🕒 Último desenho por " + nome + " — " + data;
-
-  alert("Desenho salvo com amor 💖");
+  alert("desenho salvo com amor 💖");
 }
 
 function mostrarHistorico() {
-  const historico = document.getElementById("historico");
-  historico.innerHTML = "";
+  db.collection("desenhos")
+    .orderBy("criadoEm", "desc")
+    .onSnapshot(snapshot => {
+      const historico = document.getElementById("historico");
+      historico.innerHTML = "";
 
-  const desenhos = JSON.parse(localStorage.getItem("historicoDesenhos")) || [];
-
-  desenhos.forEach(d => {
-    const div = document.createElement("div");
-    div.innerHTML = `
-      <img src="${d.imagem}" width="80" style="border-radius:10px; border:2px solid #f7b845;">
-      <p style="font-size:12px; color:#a85600;">
-        ${d.nome}<br>${d.data}
-      </p>
-    `;
-    historico.appendChild(div);
-  });
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <img src="${d.imagem}" width="80" style="border-radius:10px; border:2px solid #f7b845;">
+          <p style="font-size:12px; color:#a85600;">
+            ${d.nome}<br>${d.data}
+          </p>
+        `;
+        historico.appendChild(div);
+      });
+    });
 }
 
-window.addEventListener("load", mostrarHistorico);
-</script>
 
+window.addEventListener("load", mostrarHistorico);
+
+</script>
 </body>
 </html>
