@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="block" style="background:#fff4d6; text-align:center;">
   <h2 class="section-title">🎨 cantinho dos nossos desenhos</h2>
 
-  <p id="avisoDesenho" style="display:none; color:#ffffff; font-weight:bold;">
+  <p id="avisoDesenho" style="display:none; color:#048a21; font-weight:bold;">
     🔔 deixei um desenho pra vc momo 💕
   </p>
 
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <!-- Canvas -->
   <canvas id="canvasDesenho" width="300" height="300"
-    style="border:3px dashed #f7b845; border-radius:15px; background:white; touch-action:none;">
+    style="border:3px dashed #f7b845; border-radius:15px; background:rgb(255, 255, 255); touch-action:none;">
   </canvas>
 
   <div style="margin-top:15px;">
@@ -630,7 +630,7 @@ function limparCanvas() {
 }
 
 async function salvarDesenho() {
-  const nome = document.getElementById("nomeAutora").value || "alguém apaixonada 💕";
+  const nome = document.getElementById("nomeAutora").value || "ESQUECI O NOMEKKKK";
   const data = new Date().toLocaleString("pt-BR");
 
   const imagemBase64 = canvas.toDataURL("image/png");
