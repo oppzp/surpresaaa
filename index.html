@@ -191,14 +191,12 @@ button:hover {
 .block {
   background: white;
   padding: 25px;
-  margin: 25px auto;      /* centraliza horizontalmente */
+  margin: 25px 0;      /* largura padrão, igual aos outros blocos */
   border-radius: 25px;
   box-shadow: 0 10px 15px rgba(0,0,0,0.05);
   position: relative;
-  max-width: 400px;       /* largura do bloco, opcional */
-  text-align: center;     /* centraliza título, texto e botão */
+  text-align: center;   /* mantém o conteúdo centralizado */
 }
-
 
 </style>
 
@@ -251,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <!-- CARTA -->
-<div class="block carta" style="color:white">
+<div class="block carta" style="color:rgb(5, 168, 32)">
   <h2>💌 para voce meu amor</h2>
   <p>
     Eu criei esse site porque nossa história merece
