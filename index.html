@@ -197,6 +197,62 @@ button:hover {
   position: relative;
   text-align: center;   /* mantém o conteúdo centralizado */
 }
+.conquista {
+  background: #fff;
+  border-radius: 20px;
+  padding: 35px 30px;
+  max-width: 700px;
+  margin: 50px auto;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.conquista h2 {
+  color: #f7b845;
+  margin-bottom: 20px;
+}
+
+.texto-conquista {
+  color: #444;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.gif-conquista {
+  width: 220px;
+  max-width: 80%;
+  border-radius: 15px;
+  margin: 10px 0 20px;
+}
+
+.assinatura {
+  color: #f7b845;
+  font-style: normal;
+  font-size: 15px;
+}
+
+/* CONFETES bolsa */
+.confete {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background-color: #f7b845;
+  opacity: 0.8;
+  animation: cair 3s linear forwards;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
 </style>
 
@@ -255,6 +311,23 @@ document.addEventListener('DOMContentLoaded', () => {
     Eu criei esse site porque nossa história merece
     ser guardada de um jeito especial. Claro que teremos atualizações,
     quero encher esse site com nossos encontros 🧡
+  </p>
+</div>
+
+<!-- CONQUISTA DA BOLSA -->
+<div class="block conquista">
+  <h2>🎉 PARABENSSS MOMOOOOO 🎉</h2>
+
+  <p class="texto-conquista">
+    meu momo, ver você conquistar essa bolsa enche meu coração de orgulho sabia??  
+    tudo isso é reflexo da mulher incrível, dedicada e forte que eu me apaixonei.  
+    isso é pouco perto das grandes coisas que voce ainda vai alcançar, eu te amo ✨
+  </p>
+
+  <img src="comemoração.gif" alt="gif comemorativo" class="gif-conquista">
+
+  <p class="assinatura">
+    eu sempre vou estar aqui, comemorando cada vitória sua ao seu lado 💌
   </p>
 </div>
 
@@ -695,6 +768,24 @@ function mostrarHistorico() {
 window.addEventListener("load", mostrarHistorico);
 
 window.addEventListener("load", mostrarHistorico);
+
+
+function confetesBolsa() {
+  for (let i = 0; i < 80; i++) {
+    const confete = document.createElement("div");
+    confete.classList.add("confete");
+    confete.style.left = Math.random() * 100 + "vw";
+    confete.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    confete.style.backgroundColor = 
+      ["#f7b845", "#ffcf70", "#ffffff", "#ffb347"][Math.floor(Math.random() * 4)];
+    document.body.appendChild(confete);
+
+    setTimeout(() => confete.remove(), 3000);
+  }
+}
+
+/* dispara os confetes quando o bloco aparece */
+confetesBolsa();
 
 </script>
 </body>
