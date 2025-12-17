@@ -254,6 +254,41 @@ button:hover {
   }
 }
 
+#mural-musicas {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.musica-print {
+  position: absolute;
+  width: 160px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  opacity: 0;
+  animation: aparecerSumir 6s ease-in-out forwards;
+}
+
+@keyframes aparecerSumir {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+}
+
 </style>
 
 </head>
@@ -359,6 +394,20 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="foto6.jpg">
       <p>💕</p>
   </div>
+</div>
+
+<!-- gif -->
+<div class="block">
+  <h2 class="section-title"></h2>
+  <div class="gif-box"><img src="4.gif"></div>
+  <h2 class="section-title"></h2>
+</div>
+
+<!-- MURAL DE MÚSICAS -->
+<div class="block" style="background:#fff4d6;">
+  <h2 class="section-title">🎵 músicas que penso em voce</h2>
+
+  <div id="mural-musicas"></div>
 </div>
 
 <!-- frases -->
@@ -786,6 +835,74 @@ function confetesBolsa() {
 
 /* dispara os confetes quando o bloco aparece */
 confetesBolsa();
+
+const imagensMusica = [
+  "musica1.png",
+  "musica2.png",
+  "musica3.png",
+  "musica4.png",
+  "musica5.png",
+  "musica6.png",
+  "musica7.png",
+  "musica8.png",
+  "musica9.png",
+  "musica10.png",
+  "musica11.png",
+  "musica12.png",
+  "musica13.png",
+  "musica14.png",
+  "musica15.png",
+  "musica16.png",
+  "musica17.png",
+  "musica18.png",
+  "musica19.png",
+  "musica20.png",
+  "musica21.png",
+  "musica22.png",
+  "musica23.png",
+  "musica24.png",
+  "musica25.png",
+  "musica26.png",
+  "musica27.png",
+  "musica28.png",
+  "musica29.png",
+  "musica30.png",
+  "musica31.png",
+  "musica32.png",
+  "musica33.png",
+  "musica34.png",
+  "musica35.png",
+  "musica36.png",
+  "musica37.png",
+  "musica38.png",
+  "musica39.png",
+  "musica40.png",
+  "musica41.png",
+  "musica42.png",
+  "musica43.png",
+  "musica44.png",
+  "musica45.png"
+];
+
+function criarPrintMusica() {
+  const mural = document.getElementById("mural-musicas");
+  const img = document.createElement("img");
+
+  img.src = imagensMusica[Math.floor(Math.random() * imagensMusica.length)];
+  img.classList.add("musica-print");
+
+  img.style.left = Math.random() * (mural.clientWidth - 160) + "px";
+  img.style.top = Math.random() * (mural.clientHeight - 200) + "px";
+
+  mural.appendChild(img);
+
+  setTimeout(() => {
+    img.remove();
+  }, 7000);
+}
+
+// cria uma nova imagem a cada 8s
+setInterval(criarPrintMusica, 6000);
 
 </script>
 </body>
